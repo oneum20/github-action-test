@@ -32,7 +32,7 @@ jobs:
           echo ${{ startsWith('Hello World', 'he')}}
           echo ${{ endsWith('Hello World', 'ld')}}
           echo ${{ format('Hello {0} {1}', 'World', '!')}}
-          echo ${{ join([github.event.issue.labels.*.name], ', ') }}
+          echo ${{ join(github.event.issue.labels.*.name, ', ') }}
           echo ${{ toJson(job)}}
 
   
