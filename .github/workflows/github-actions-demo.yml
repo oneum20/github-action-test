@@ -24,14 +24,16 @@ jobs:
       - run: sleep 10
       - run: echo $GITHUB_OUTPUT
       - id: stpvar
-        run: echo "testvar=\"2023.10.29\"" >> $GITHUB_OUTPUT
+        run: |
+          echo "testvar=\"2023.10.29\"" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
 
   Action-Study:
     needs: 
       - Dummy
     env:
       NUM1: ${{ 2023 }}
-      VAR2: ${{needs.dummy.outputs.outvar}}
+      VAR2: ${{ needs.dummy.outputs.outvar }}
     runs-on: ubuntu-latest # GitHub에서 제공되는 Runner
     steps:
       - uses: actions/checkout@v4 # GitHub에서 제공되는 action
@@ -39,16 +41,18 @@ jobs:
       - run: |
           echo ">>> ENV"
           export
+          echo VAR2: $VAR2
 
       - run: |
           echo ${{ contains('Hello World', 'or') }}
-          echo ${{ startsWith('Hello World', 'he')}}
-          echo ${{ endsWith('Hello World', 'ld')}}
-          echo ${{ format('Hello {0} {1}', 'World', '!')}}
+          echo ${{ startsWith('Hello World', 'he') }}
+          echo ${{ endsWith('Hello World', 'ld') }}
+          echo ${{ format('Hello {0} {1}', 'World', '!') }}
           echo ${{ join(github.event.issue.labels.*.name, ', ') }}
           cat <<EOF
-          ${{ toJson(job)}}
+          ${{ toJson(job) }}
           EOF
+          
           
 
   
