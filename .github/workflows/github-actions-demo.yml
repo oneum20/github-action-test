@@ -16,7 +16,14 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  Dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 10
   Action-Study:
+    needs: 
+      - Explore-GitHub-Actions 
+      - Dummy
     env:
       NUM1: ${{ 2023 }}
     runs-on: ubuntu-latest # GitHub에서 제공되는 Runner
