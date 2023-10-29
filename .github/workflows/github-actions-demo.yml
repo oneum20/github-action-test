@@ -16,3 +16,23 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  Action-Study:
+    env:
+      NUM1: ${{ 2023 }}
+    runs-on: ubuntu-latest # GitHub에서 제공되는 Runner
+    steps:
+      - uses: actions/checkout@v4 # GitHub에서 제공되는 action
+    
+      - run: |
+          echo ">>> ENV"
+          echo export
+
+      - run: |
+          echo ${{ contains('Hello World', 'or') }}
+          echo ${{ startsWith('Hello World', 'he')}}
+          echo ${{ endsWith('Hello World', 'ld')}}
+          echo ${{ format('Hello {0} {1}', 'World', '!')}}
+          echo ${{ join([github.event.issue.labels.*.name], ', ') }}
+          echo ${{ toJson(job)}}
+
+  
