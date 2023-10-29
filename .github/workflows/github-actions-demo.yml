@@ -18,14 +18,20 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
   Dummy:
     runs-on: ubuntu-latest
+    outputs: 
+      outvar: ${{steps.stpvar.outputs.testvar}}
     steps:
       - run: sleep 10
+      - run: echo $GITHUB_OUTPUT
+      - id: stpvar
+        run: echo "testvar=\"2023.10.29\"" >> $GITHUB_OUTPUT
+
   Action-Study:
     needs: 
-      - Explore-GitHub-Actions 
       - Dummy
     env:
       NUM1: ${{ 2023 }}
+      VAR2: ${{needs.dummy.outputs.outvar}}
     runs-on: ubuntu-latest # GitHub에서 제공되는 Runner
     steps:
       - uses: actions/checkout@v4 # GitHub에서 제공되는 action
@@ -43,5 +49,6 @@ jobs:
           cat <<EOF
           ${{ toJson(job)}}
           EOF
+          
 
   
