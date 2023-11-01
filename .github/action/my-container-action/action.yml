@@ -11,6 +11,6 @@ outputs:
     description: 'The time we greeted you'
 runs:
   using: 'docker'
-  image: '$GITHUB_WORKSPACE/Dockerfile'
+  image: '${{vars.GITHUB_WORKSPACE}}/Dockerfile'
   args:
     - ${{ inputs.who-to-greet }}
