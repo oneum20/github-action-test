@@ -66,7 +66,6 @@ jobs:
           id: hello
           with:
             who-to-greet: '2023-11-01'
-            image: "${{github.workspace}}/dockerfile"
         - name: Get the output time
           run: echo ${{steps.hello.outputs.time}}
 
