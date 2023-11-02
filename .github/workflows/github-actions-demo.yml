@@ -60,11 +60,13 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
         - run: find .
+        - run: pwd
         - name: Hello world action step
           uses: ./.github/action/my-container-action
           id: hello
           with:
             who-to-greet: '2023-11-01'
+            workspace: "${{github.workspace}}"
         - name: Get the output time
           run: echo ${{steps.hello.outputs.time}}
 
