@@ -53,9 +53,16 @@ jobs:
           ${{ toJson(job) }}
           EOF
           
-  hello_world_job:
-      name: A job to say hello
+  dockerize_job:
+      name: A job to dockerize
       uses: ./.github/workflows/my-container-action.yml
       with:
         who-to-greet: '2023-11-01'
+
+        
+  go_build_job:
+      name: A job to build go
+      uses: ./.github/workflows/my-go-action.yml
+
+
 

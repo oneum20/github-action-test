@@ -25,6 +25,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v4
         with:
+          platforms: linux/amd64
           context: .  # The context for your Docker build
           file: Dockerfile  # Your Dockerfile
           push: false

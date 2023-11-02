@@ -1,0 +1,23 @@
+name: Go
+
+on: [workflow_call]
+
+jobs:
+    build:
+        runs-on: ubuntu_latest
+        steps:
+          - uses: actions/checkout@v4
+          - name: Setup Go 1.21.x
+            uses: actions/setup-go@v4
+            with:
+              # Semantic version range syntax or exact version of Go
+              go-version-file: 'go.mod'
+          - name: install dependencies
+            run: go mod tidy
+          - name: build
+            run: GO111MODULE=on GOARCH=amd64 GOOS=linux go build -o app main.go
+          - name: result
+            run: ls -al
+            
+    
+
