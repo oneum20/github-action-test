@@ -62,7 +62,7 @@ jobs:
         - run: find .
         - run: pwd
         - name: Hello world action step
-          uses: ./.github/action/my-container-action
+          uses: ./.github/workflows/my-container-action.yml
           id: hello
           with:
             who-to-greet: '2023-11-01'
